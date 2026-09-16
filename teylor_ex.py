@@ -1,5 +1,5 @@
-x = int(input("Введите значение x: "))
-epsilon = int(input("Введите значение epsilon: "))
+x = float(input("Введите значение x: "))
+epsilon = float(input("Введите значение epsilon: "))
 
 
 def taylor_exp(x, epsilon):
