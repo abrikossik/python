@@ -20,10 +20,10 @@ def lagrange(t_nodes, y_nodes, t):
 
     result = 0.0
 
-    for i in range(len(t_nodes)):
+    for i in range(len(t_nodes)):                                       #O(n)
         basis = 1.0
 
-        for j in range(len(t_nodes)):
+        for j in range(len(t_nodes)):                                   #O(n)
             if i != j:
                 basis *= (t - t_nodes[j]) / (t_nodes[i] - t_nodes[j])
 
@@ -42,13 +42,13 @@ for letter, data in LipsData.items():
 
     result = np.zeros((len(new_times), 40, 2), dtype=float)
 
-    for k, t in enumerate(new_times):
-        for point in range(40):
+    for k, t in enumerate(new_times):                                   #O(m)
+        for point in range(40):                                         #O(p)
             x_values = data[:, point, 0]
             y_values = data[:, point, 1]
 
-            new_x = lagrange(t_nodes, x_values, t)
-            new_y = lagrange(t_nodes, y_values, t)
+            new_x = lagrange(t_nodes, x_values, t)                      #O(nn)
+            new_y = lagrange(t_nodes, y_values, t)                      #O(nn)
 
             result[k, point, 0] = new_x
             result[k, point, 1] = new_y
@@ -59,4 +59,4 @@ for letter, data in LipsData.items():
 for letter, data in Task1LispPoints.items():
     print(f"Буква {letter}: {data.shape}")
 
-animate_lips(Task1LispPoints['В'], interval=100)
+animate_lips(Task1LispPoints['В'], interval=100)        #итоговая временная сложность: O(mpqnn), аналогично при m = 2n => O(2pqnnn)
